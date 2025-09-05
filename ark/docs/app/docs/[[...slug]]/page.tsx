@@ -10,6 +10,7 @@ import {
 } from "fumadocs-ui/page"
 import { notFound, redirect } from "next/navigation"
 import { SyntaxTab, SyntaxTabs } from "../../../components/SyntaxTabs.tsx"
+import { generateMetadataClient } from "../../../lib/generate-metadata.ts"
 import { source } from "../../../lib/source.tsx"
 
 export default async (props: { params: Promise<{ slug?: string[] }> }) => {
@@ -76,15 +77,18 @@ export const generateStaticParams = async () => [
 	{ slug: ["intro"] }
 ]
 
-export const generateMetadata = async (props: {
-	params: Promise<{ slug?: string[] }>
-}) => {
-	const params = await props.params
-	const page = source.getPage(params.slug)
-	if (!page) notFound()
+export const generateMetadata = generateMetadataClient.getMetadata(
+	async (props: { params: Promise<{ slug?: string[] }> }) => {
+		const params = await props.params
+		const page = source.getPage(params.slug)
+		if (!page) notFound()
 
-	return {
-		title: page.data.title,
-		description: page.data.description
+		return {
+			path: `/docs/${params.slug?.join("/")}`,
+			fallback: {
+				title: page.data.title,
+				description: page.data.description
+			}
+		}
 	}
-}
+)

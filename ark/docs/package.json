@@ -31,6 +31,7 @@
 		"fumadocs-mdx": "11.5.7",
 		"fumadocs-twoslash": "3.1.0",
 		"fumadocs-ui": "15.2.3",
+		"generate-metadata": "^0.0.9",
 		"hast-util-to-jsx-runtime": "2.3.6",
 		"linkinator": "6.1.2",
 		"lucide-react": "0.487.0",

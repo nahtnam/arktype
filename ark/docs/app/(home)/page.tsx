@@ -11,6 +11,11 @@ import { Hero } from "../../components/Hero.tsx"
 import { TsIcon } from "../../components/icons/ts.tsx"
 import { LinkCard } from "../../components/LinkCard.tsx"
 import { RuntimeBenchmarksGraph } from "../../components/RuntimeBenchmarksGraph.tsx"
+import { generateMetadataClient } from "../../lib/generate-metadata.ts"
+
+export const generateMetadata = generateMetadataClient.getMetadata(() => ({
+	path: "/"
+}))
 
 export default () => (
 	<div className="flex-1 pt-40 container relative pb-20">

@@ -4,7 +4,7 @@ import { RootProvider } from "fumadocs-ui/provider"
 import { Atkinson_Hyperlegible, Raleway } from "next/font/google"
 import type { ReactNode } from "react"
 import { ReleaseBanner } from "../components/ReleaseBanner.tsx"
-import { defineMetadata } from "./metadata.ts"
+import { generateMetadataClient } from "../lib/generate-metadata.ts"
 import { CSPostHogProvider } from "./providers.tsx"
 
 const raleway = Raleway({
@@ -20,7 +20,7 @@ const atkinson = Atkinson_Hyperlegible({
 	variable: "--font-atkinson"
 })
 
-export const metadata = defineMetadata({})
+export const generateMetadata = generateMetadataClient.getRootMetadata()
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (

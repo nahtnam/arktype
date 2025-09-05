@@ -2,13 +2,12 @@ import { HomeLayout } from "fumadocs-ui/layouts/home"
 import type { ReactNode } from "react"
 import { FloatYourBoat } from "../../components/FloatYourBoat.tsx"
 import { Playground } from "../../components/playground/Playground.tsx"
+import { generateMetadataClient } from "../../lib/generate-metadata.ts"
 import { baseOptions } from "../layout.config.tsx"
-import { defineMetadata } from "../metadata.ts"
 
-export const metadata = defineMetadata({
-	title: "ArkType Playground",
-	ogImage: "ogPlayground.png"
-})
+export const generateMetadata = generateMetadataClient.getMetadata(() => ({
+	path: "/playground"
+}))
 
 export type LayoutProps = {
 	children: ReactNode
